@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'models/item.dart';
 
@@ -27,9 +30,9 @@ class HomePage extends StatefulWidget {
 
   HomePage() {
     items = [];
-    items.add(Item(title: "Item 1", done: true));
-    items.add(Item(title: "Item 2", done: true));
-    items.add(Item(title: "Item 1", done: false));
+    // items.add(Item(title: "Item 1", done: true));
+    // items.add(Item(title: "Item 2", done: true));
+    // items.add(Item(title: "Item 1", done: false));
   }
 
   @override
@@ -40,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   //controlador do texto input pega a limpa o texto
   var newTaskCtrl = TextEditingController();
 
-//metodo que adiciona um novo item em branco com done=false
+  //metodo que adiciona um novo item em branco com done=false
   void add() {
     //Validação se o item for vazio https://youtu.be/z1DGYDeiW7I?list=PLHlHvK2lnJndhgbqLl5DNEvKQg5F4ZenQ&t=275
     if (newTaskCtrl.text.isEmpty) return;
@@ -56,10 +59,41 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //Metodo que remove um item da lista:
   void remove(int index) {
     setState(() {
       widget.items.removeAt(index);
     });
+  }
+
+//uma função assincrona para pegar os dados persistidos
+//Cria uma promessa que vai retornar dados:
+  Future load() async {
+    //agaurdo até que a reauisição esteja carregado
+    var prefs = await SharedPreferences.getInstance();
+
+    //apos aguardar...
+    var data = prefs.getString('data');
+    //data pode vir nulo:
+    if (data != null) {
+      //se tem informação: Tranforma em json:
+      Iterable decoded = jsonDecode(data);
+      //semelhante a um foreach, para adicionar os itens na lista
+      //Faz o mapeamento dos objetos:iteração na lista
+      List<Item> result = decoded.map((x) => Item.fromJson(x)).toList();
+
+      //percorre a lista de strings
+      //Muda o stado da tela:
+      setState(() {
+        widget.items =
+            result; // https://youtu.be/vpkdRq5L4U4?list=PLHlHvK2lnJndhgbqLl5DNEvKQg5F4ZenQ&t=494
+      });
+    }
+  }
+
+//Faz a leitura dos dados ao carregar a aplicação:
+  _HomePageState() {
+    load();
   }
 
   @override
