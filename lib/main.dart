@@ -55,7 +55,11 @@ class _HomePageState extends State<HomePage> {
             key: Key(item.title),
             value: item.done,
             onChanged: (value) {
-              print(value);
+              //altera o stado da tela: manda a tela redesenhar/buildar
+              //caso algo seja alterado
+              setState(() {
+                item.done = value;
+              });
             },
           );
         },
