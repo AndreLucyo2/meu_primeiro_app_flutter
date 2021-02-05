@@ -40,6 +40,19 @@ class _HomePageState extends State<HomePage> {
   //controlador do texto input pega a limpa o texto
   var newTaskCtrl = TextEditingController();
 
+//metodo que adiciona um novo item em branco com done=false
+  void add() {
+    setState(() {
+      widget.items.add(
+        Item(
+          title: newTaskCtrl.text,
+          done: false,
+        ),
+      );
+      newTaskCtrl.text = "";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
