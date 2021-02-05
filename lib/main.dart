@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
 
 //metodo que adiciona um novo item em branco com done=false
   void add() {
-    //Validação se o item for vazio
+    //Validação se o item for vazio https://youtu.be/z1DGYDeiW7I?list=PLHlHvK2lnJndhgbqLl5DNEvKQg5F4ZenQ&t=275
     if (newTaskCtrl.text.isEmpty) return;
 
     setState(() {
@@ -81,18 +81,21 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (BuildContext ctxt, int index) {
           //fica mais legivel com uso de variavel:
           final item = widget.items[index];
-          //o que deve ser desenhado
-          return CheckboxListTile(
-            title: Text(item.title),
+          //Como a lista deve ser desenhada
+          return Dismissible(
+            child: CheckboxListTile(
+              title: Text(item.title),
+              value: item.done,
+              onChanged: (value) {
+                setState(() {
+                  item.done = value;
+                });
+              },
+            ),
             key: Key(item.title),
-            value: item.done,
-            onChanged: (value) {
-              //altera o stado da tela: manda a tela redesenhar/buildar
-              //caso algo seja alterado Video 8
-              setState(() {
-                item.done = value;
-              });
-            },
+            background: Container(
+              color: Colors.red.withOpacity(0.2),
+            ),
           );
         },
       ),
