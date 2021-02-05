@@ -37,11 +37,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //controlador do texto input
+  var newTaskCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: TextFormField(
+          //faz a ligação do controlador do texto
+          controller: newTaskCtrl,
           keyboardType: TextInputType.text,
           style: TextStyle(
             color: Colors.white,
