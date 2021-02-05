@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
     await prefs.setString('data', jsonEncode(widget.items));
   }
 
-//Faz a leitura dos dados ao carregar a aplicação:
+  //Faz a leitura dos dados ao carregar  a aplicação:
   _HomePageState() {
     load();
   }
