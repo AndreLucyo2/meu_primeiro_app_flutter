@@ -41,7 +41,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Todo List"),
+        title: TextFormField(
+          keyboardType: TextInputType.text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+          ),
+          decoration: InputDecoration(
+              labelText: "Nova Terefa:",
+              labelStyle: TextStyle(
+                color: Colors.white,
+              )),
+        ),
       ),
       body: ListView.builder(
         //contrutor
