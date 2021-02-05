@@ -37,7 +37,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //controlador do texto input
+  //controlador do texto input pega a limpa o texto
   var newTaskCtrl = TextEditingController();
 
   @override
@@ -79,6 +79,11 @@ class _HomePageState extends State<HomePage> {
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        backgroundColor: Colors.pink,
       ),
     );
   }
