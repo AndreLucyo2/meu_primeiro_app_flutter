@@ -56,6 +56,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void remove(int index) {
+    setState(() {
+      widget.items.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,10 +105,12 @@ class _HomePageState extends State<HomePage> {
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
                 print("Teste: Esquerda!");
+                //chama o metodo para remover o item
+                remove(index);
               } else {
                 print("Teste: Direita!");
               }
-              print(direction);
+              print(direction); //teste
             },
           );
         },
