@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
             value: item.done,
             onChanged: (value) {
               //altera o stado da tela: manda a tela redesenhar/buildar
-              //caso algo seja alterado
+              //caso algo seja alterado Video 8
               setState(() {
                 item.done = value;
               });
