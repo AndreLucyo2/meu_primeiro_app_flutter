@@ -24,9 +24,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Text("..."),
         title: Text("Todo List"),
-        actions: <Widget>[Icon(Icons.public)],
       ),
       body: Container(
         child: Center(child: Text("Ola Mundo!")),
