@@ -56,6 +56,8 @@ class _HomePageState extends State<HomePage> {
         ),
       );
       newTaskCtrl.text = "";
+      //ao adiciona salva no SharedPreferences BD.
+      save();
     });
   }
 
@@ -63,6 +65,8 @@ class _HomePageState extends State<HomePage> {
   void remove(int index) {
     setState(() {
       widget.items.removeAt(index);
+      //ao remover salva no SharedPreferences BD.
+      save();
     });
   }
 
@@ -89,6 +93,13 @@ class _HomePageState extends State<HomePage> {
             result; // https://youtu.be/vpkdRq5L4U4?list=PLHlHvK2lnJndhgbqLl5DNEvKQg5F4ZenQ&t=494
       });
     }
+  }
+
+  //Salva os dados no SharedPreferences
+  save() async {
+    var prefs = await SharedPreferences.getInstance();
+    //Transforma os itens em uma lista:
+    await prefs.setString('data', jsonEncode(widget.items));
   }
 
 //Faz a leitura dos dados ao carregar a aplicação:
@@ -129,6 +140,8 @@ class _HomePageState extends State<HomePage> {
               onChanged: (value) {
                 setState(() {
                   item.done = value;
+                  //se trocar o item salva no SharedPreferences BD.
+                  save();
                 });
               },
             ),
