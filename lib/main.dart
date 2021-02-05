@@ -47,8 +47,10 @@ class _HomePageState extends State<HomePage> {
         //contrutor
         itemCount: widget.items.length, //tamanho da lista
         itemBuilder: (BuildContext ctxt, int index) {
+          //fica mais legivel com uso de variavel:
+          final item = widget.items[index].title;
           //o que deve ser desenhado
-          return Text(widget.items[index].title);
+          return Text(item);
         },
       ),
     );
