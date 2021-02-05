@@ -96,6 +96,14 @@ class _HomePageState extends State<HomePage> {
             background: Container(
               color: Colors.red.withOpacity(0.2),
             ),
+            onDismissed: (direction) {
+              if (direction == DismissDirection.endToStart) {
+                print("Teste: Esquerda!");
+              } else {
+                print("Teste: Direita!");
+              }
+              print(direction);
+            },
           );
         },
       ),
