@@ -42,6 +42,9 @@ class _HomePageState extends State<HomePage> {
 
 //metodo que adiciona um novo item em branco com done=false
   void add() {
+    //Validação se o item for vazio
+    if (newTaskCtrl.text.isEmpty) return;
+
     setState(() {
       widget.items.add(
         Item(
@@ -94,7 +97,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: add,
         child: Icon(Icons.add),
         backgroundColor: Colors.pink,
       ),
